@@ -3,7 +3,7 @@ extends Button
 export var item = "Mushroom"
 export(Texture) var image
 export var price = 10
-export var value = 1
+export var value = 1.0
 export(String, "Topping", "Oven") var upgrade_type
 onready var stats = get_node("/root/stats")
 var topping_format = "%s - %s$ \n(+%s price)"
@@ -16,9 +16,10 @@ func _ready():
 		$MarginContainer/Label.text = oven_format % [item, price, value] 
 		
 func _on_Upgrade_pressed():
-	if upgrade_type == "Topping" and stats.balance > price - 1:
-		stats.price += value
-		stats.balance -= price
-	if upgrade_type == "Oven" and stats.balance > price - 1:
-		stats.ovens += value
-		stats.balance -= price
+	if stats.data["balance"] > price - 0.1:
+		if upgrade_type == "Topping":
+			stats.data["price"] += value
+			stats.data["balance"] -= price
+		if upgrade_type == "Oven":
+			stats.data["ovens"] += value
+			stats.data["balance"] -= price

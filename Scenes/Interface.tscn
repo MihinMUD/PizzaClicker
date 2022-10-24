@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/pizza.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Interface.tres" type="Theme" id=2]
@@ -15,7 +15,18 @@
 [ext_resource path="res://Assets/Ovens/GoldOven.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Ovens/DiamondOven.png" type="Texture" id=14]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Born2bSportyV2.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+outline_size = 3
+outline_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+extra_spacing_top = 8
+extra_spacing_bottom = 8
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 24
 font_data = ExtResource( 4 )
 
@@ -27,44 +38,54 @@ texture = ExtResource( 6 )
 expand = true
 script = ExtResource( 10 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 
-[node name="PizzaStats" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 572.0
-margin_bottom = 600.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="PizzaStats" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 548.0
+margin_bottom = 560.0
 size_flags_horizontal = 3
 
-[node name="Balance" type="Label" parent="HBoxContainer/PizzaStats"]
-margin_right = 572.0
+[node name="Balance" type="Label" parent="MarginContainer/HBoxContainer/PizzaStats"]
+margin_right = 548.0
 margin_bottom = 36.0
 size_flags_vertical = 0
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 text = "Balance:"
 
-[node name="Ovens" type="Label" parent="HBoxContainer/PizzaStats"]
+[node name="Ovens" type="Label" parent="MarginContainer/HBoxContainer/PizzaStats"]
 margin_top = 40.0
-margin_right = 572.0
+margin_right = 548.0
 margin_bottom = 76.0
 size_flags_vertical = 0
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 text = "Ovens:"
 
-[node name="Price" type="Label" parent="HBoxContainer/PizzaStats"]
+[node name="Price" type="Label" parent="MarginContainer/HBoxContainer/PizzaStats"]
 margin_top = 80.0
-margin_right = 572.0
+margin_right = 548.0
 margin_bottom = 116.0
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 text = "Price per pizza:"
 
-[node name="PizzaContainer" type="MarginContainer" parent="HBoxContainer/PizzaStats"]
+[node name="PizzaContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PizzaStats"]
 margin_top = 120.0
-margin_right = 572.0
-margin_bottom = 600.0
+margin_right = 548.0
+margin_bottom = 560.0
 mouse_filter = 1
 size_flags_vertical = 3
 custom_constants/margin_right = 20
@@ -75,35 +96,40 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Pizza" type="TextureButton" parent="HBoxContainer/PizzaStats/PizzaContainer"]
+[node name="Pizza" type="TextureButton" parent="MarginContainer/HBoxContainer/PizzaStats/PizzaContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 552.0
-margin_bottom = 460.0
+margin_right = 528.0
+margin_bottom = 420.0
 size_flags_vertical = 3
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 576.0
-margin_right = 1024.0
-margin_bottom = 600.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
+[node name="Ascend" type="Button" parent="MarginContainer/HBoxContainer/PizzaStats"]
+visible = false
+margin_top = 508.0
+margin_right = 548.0
+margin_bottom = 560.0
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Ascend"
 
-[node name="Upgrades" type="TabContainer" parent="HBoxContainer/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 428.0
-margin_bottom = 580.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 552.0
+margin_right = 572.0
+margin_bottom = 560.0
+custom_constants/margin_right = 20
+
+[node name="Upgrades" type="TabContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 576.0
+margin_right = 984.0
+margin_bottom = 560.0
 theme = ExtResource( 2 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 tab_align = 0
 
-[node name="Pizza Topings" type="MarginContainer" parent="HBoxContainer/MarginContainer/Upgrades"]
+[node name="Pizza Topings" type="MarginContainer" parent="MarginContainer/HBoxContainer/Upgrades"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -112,7 +138,7 @@ custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 400.0
@@ -121,41 +147,43 @@ custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 2
 
-[node name="Mushroom" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+[node name="Mushroom" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
 margin_bottom = 256.0
+price = 50
+value = 0.1
 upgrade_type = "Topping"
 
-[node name="BellPeper" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+[node name="BellPeper" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
 margin_left = 200.0
 margin_right = 392.0
 margin_bottom = 256.0
 item = "Bell Peper"
 image = ExtResource( 7 )
-price = 100
-value = 11
+price = 1000
+value = 3.0
 upgrade_type = "Topping"
 
-[node name="Bacon" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+[node name="Bacon" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
 margin_top = 264.0
 margin_bottom = 520.0
 item = "Bell Peper"
 image = ExtResource( 9 )
-price = 1000
-value = 110
+price = 10000
+value = 50.0
 upgrade_type = "Topping"
 
-[node name="Peperoni" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+[node name="Peperoni" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
 margin_left = 200.0
 margin_top = 264.0
 margin_right = 392.0
 margin_bottom = 520.0
 item = "Peperoni"
 image = ExtResource( 8 )
-price = 2000
-value = 200
+price = 100000
+value = 800.0
 upgrade_type = "Topping"
 
-[node name="Ovens" type="MarginContainer" parent="HBoxContainer/MarginContainer/Upgrades"]
+[node name="Ovens" type="MarginContainer" parent="MarginContainer/HBoxContainer/Upgrades"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -164,7 +192,7 @@ custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/Upgrades/Ovens"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/Upgrades/Ovens"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 400.0
@@ -174,42 +202,53 @@ custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 2
 
-[node name="Brick Oven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+[node name="Brick Oven" parent="MarginContainer/HBoxContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
 item = "Brick Oven"
 image = ExtResource( 12 )
 price = 1000
+value = 0.1
 upgrade_type = "Oven"
 
-[node name="SilverOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+[node name="SilverOven" parent="MarginContainer/HBoxContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
 margin_left = 200.0
 margin_right = 392.0
 item = "Silver Oven"
 image = ExtResource( 11 )
-price = 4500
-value = 5
+price = 10000
 upgrade_type = "Oven"
 
-[node name="GoldOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+[node name="GoldOven" parent="MarginContainer/HBoxContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
 margin_top = 200.0
 margin_bottom = 392.0
 item = "Gold Oven"
 image = ExtResource( 13 )
-price = 9500
-value = 10
+price = 100000
+value = 12.0
 upgrade_type = "Oven"
 
-[node name="DiamondOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+[node name="DiamondOven" parent="MarginContainer/HBoxContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
 margin_top = 200.0
 margin_bottom = 392.0
 item = "Diamond Oven"
 image = ExtResource( 14 )
-price = 19500
-value = 20
+price = 1000000
+value = 120.0
 upgrade_type = "Oven"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
-[connection signal="pressed" from="HBoxContainer/PizzaStats/PizzaContainer/Pizza" to="." method="_on_Pizza_pressed"]
+[node name="AscendDialog" type="ConfirmationDialog" parent="."]
+margin_left = 200.0
+margin_top = 280.0
+margin_right = 801.0
+margin_bottom = 355.0
+window_title = "Do you want to ascend?"
+dialog_text = "Are you sure you want to ascend?
+all your progress will be lost! in return you will start with 50 ovens for everytime you have ascended. "
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PizzaStats/PizzaContainer/Pizza" to="." method="_on_Pizza_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PizzaStats/Ascend" to="." method="_on_Ascend_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="confirmed" from="AscendDialog" to="." method="_on_AscendDialog_confirmed"]

@@ -3,14 +3,25 @@ extends TextureRect
 onready var stats = get_node("/root/stats")
 
 func _process(_delta):
-	$HBoxContainer/PizzaStats/Balance.text = "Balance: " + str(stats.balance)
-	$HBoxContainer/PizzaStats/Ovens.text = "Ovens: " + str(stats.ovens)
-	$HBoxContainer/PizzaStats/Price.text = "Price per pizza: " + str(stats.price)
-	
-
+	$MarginContainer/HBoxContainer/PizzaStats/Balance.text = "Balance: " + str(stats.data["balance"])
+	$MarginContainer/HBoxContainer/PizzaStats/Ovens.text = "Ovens: " + str(stats.data["ovens"])
+	$MarginContainer/HBoxContainer/PizzaStats/Price.text = "Price per pizza: " + str(stats.data["price"])
+	if stats.data["balance"] > 1000000:
+		$MarginContainer/HBoxContainer/PizzaStats/Ascend.show()
+	if stats.data["ascends"] > 20:
+		get_tree().change_scene("res://Scenes/Help.tscn")
 func _on_Pizza_pressed():
-	stats.balance += stats.price
-
+	stats.data["balance"] += stats.data["price"]
 
 func _on_Timer_timeout():
-	stats.balance += stats.ovens * stats.price
+	stats.data["balance"] += stats.data["ovens"] * stats.data["price"]
+
+func _on_Ascend_pressed():
+	$AscendDialog.popup()
+
+func _on_AscendDialog_confirmed():
+	stats.data["ascends"] += 1
+	stats.data["balance"] = 0
+	stats.data["price"] = 1
+	stats.data["ovens"] = stats.data["price"] * 50
+	$MarginContainer/HBoxContainer/PizzaStats/Ascend.hide()
