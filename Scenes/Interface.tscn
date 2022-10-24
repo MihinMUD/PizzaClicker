@@ -1,0 +1,215 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/pizza.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Interface.tres" type="Theme" id=2]
+[ext_resource path="res://Scenes/Upgrade.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Born2bSportyV2.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/table.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Toppings/bell_pepper.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Toppings/peperoni.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Toppings/bacon.png" type="Texture" id=9]
+[ext_resource path="res://Src/Game.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Ovens/SilverOven.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Ovens/BrickOven.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Ovens/GoldOven.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Ovens/DiamondOven.png" type="Texture" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 4 )
+
+[node name="Interface" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+texture = ExtResource( 6 )
+expand = true
+script = ExtResource( 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PizzaStats" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 572.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="Balance" type="Label" parent="HBoxContainer/PizzaStats"]
+margin_right = 572.0
+margin_bottom = 36.0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "Balance:"
+
+[node name="Ovens" type="Label" parent="HBoxContainer/PizzaStats"]
+margin_top = 40.0
+margin_right = 572.0
+margin_bottom = 76.0
+size_flags_vertical = 0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "Ovens:"
+
+[node name="Price" type="Label" parent="HBoxContainer/PizzaStats"]
+margin_top = 80.0
+margin_right = 572.0
+margin_bottom = 116.0
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "Price per pizza:"
+
+[node name="PizzaContainer" type="MarginContainer" parent="HBoxContainer/PizzaStats"]
+margin_top = 120.0
+margin_right = 572.0
+margin_bottom = 600.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Pizza" type="TextureButton" parent="HBoxContainer/PizzaStats/PizzaContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 552.0
+margin_bottom = 460.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 576.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Upgrades" type="TabContainer" parent="HBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 428.0
+margin_bottom = 580.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
+tab_align = 0
+
+[node name="Pizza Topings" type="MarginContainer" parent="HBoxContainer/MarginContainer/Upgrades"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 24.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 400.0
+margin_bottom = 528.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+
+[node name="Mushroom" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+margin_bottom = 256.0
+upgrade_type = "Topping"
+
+[node name="BellPeper" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+margin_left = 200.0
+margin_right = 392.0
+margin_bottom = 256.0
+item = "Bell Peper"
+image = ExtResource( 7 )
+price = 100
+value = 11
+upgrade_type = "Topping"
+
+[node name="Bacon" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+margin_top = 264.0
+margin_bottom = 520.0
+item = "Bell Peper"
+image = ExtResource( 9 )
+price = 1000
+value = 110
+upgrade_type = "Topping"
+
+[node name="Peperoni" parent="HBoxContainer/MarginContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
+margin_left = 200.0
+margin_top = 264.0
+margin_right = 392.0
+margin_bottom = 520.0
+item = "Peperoni"
+image = ExtResource( 8 )
+price = 2000
+value = 200
+upgrade_type = "Topping"
+
+[node name="Ovens" type="MarginContainer" parent="HBoxContainer/MarginContainer/Upgrades"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/Upgrades/Ovens"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 400.0
+margin_bottom = 400.0
+size_flags_horizontal = 3
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+
+[node name="Brick Oven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+item = "Brick Oven"
+image = ExtResource( 12 )
+price = 1000
+upgrade_type = "Oven"
+
+[node name="SilverOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+margin_left = 200.0
+margin_right = 392.0
+item = "Silver Oven"
+image = ExtResource( 11 )
+price = 4500
+value = 5
+upgrade_type = "Oven"
+
+[node name="GoldOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+margin_top = 200.0
+margin_bottom = 392.0
+item = "Gold Oven"
+image = ExtResource( 13 )
+price = 9500
+value = 10
+upgrade_type = "Oven"
+
+[node name="DiamondOven" parent="HBoxContainer/MarginContainer/Upgrades/Ovens/GridContainer" instance=ExtResource( 3 )]
+margin_top = 200.0
+margin_bottom = 392.0
+item = "Diamond Oven"
+image = ExtResource( 14 )
+price = 19500
+value = 20
+upgrade_type = "Oven"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="pressed" from="HBoxContainer/PizzaStats/PizzaContainer/Pizza" to="." method="_on_Pizza_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

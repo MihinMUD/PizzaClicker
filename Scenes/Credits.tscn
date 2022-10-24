@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Interface.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/PlayButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Src/Credits.gd" type="Script" id=4]
+
+[node name="Credits" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="RichTextLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -106.0
+margin_right = 512.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 2 )
+text = "This Game is made by MihinMUD
+and also the art is made by me
+
+Font: Born2bSportyV2 by JapanYoshi
+
+Game Engine: Godot Engine"
+align = 1
+valign = 1
+
+[node name="PlayButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -152.0
+margin_right = 0.0
+
+[node name="LinkButton" type="LinkButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = 132.0
+margin_right = 59.0
+margin_bottom = 168.0
+custom_fonts/font = ExtResource( 2 )
+text = "(License)"
+
+[connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]
