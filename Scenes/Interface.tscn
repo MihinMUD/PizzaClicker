@@ -166,7 +166,7 @@ upgrade_type = "Topping"
 [node name="Bacon" parent="MarginContainer/HBoxContainer/Upgrades/Pizza Topings/GridContainer" instance=ExtResource( 3 )]
 margin_top = 264.0
 margin_bottom = 520.0
-item = "Bell Peper"
+item = "Bacon"
 image = ExtResource( 9 )
 price = 10000
 value = 50.0

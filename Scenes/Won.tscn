@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Interface.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/PlayButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Src/Credits.gd" type="Script" id=4]
+
+[node name="WinScreen" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="RichTextLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -193.5
+margin_right = 512.0
+margin_bottom = 193.5
+custom_fonts/font = ExtResource( 2 )
+text = "Impossible! 
+You beated Pizza Clicker!!!!!
+
+You have reached an unbelievable level of power! 
+So you must be reset back to the beginning of the game
+
+WITH ZERO OVENS!!!!
+
+While you are here, check out the awesome people who helped to
+ make this game by visiting the credit section!"
+align = 1
+valign = 1
+
+[node name="PlayButton" parent="." instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -152.0
+margin_right = 0.0

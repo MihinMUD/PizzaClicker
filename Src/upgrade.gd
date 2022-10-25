@@ -7,7 +7,7 @@ export var value = 1.0
 export(String, "Topping", "Oven") var upgrade_type
 onready var stats = get_node("/root/stats")
 var topping_format = "%s - %s$ \n(+%s price)"
-var oven_format = "%s - %s$ \n(+%s pizza per 5secs)"
+var oven_format = "%s - %s$ \n(+%s pizza per 10secs)"
 func _ready():
 	$MarginContainer/TextureRect.texture = image
 	if upgrade_type == "Topping":
